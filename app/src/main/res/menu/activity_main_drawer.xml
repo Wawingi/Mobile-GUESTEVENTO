@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/registar_utilizador"
+            android:icon="@drawable/ic_portrait_black_24dp"
+            android:title="Registar Utilizador" />
+        <item
+            android:id="@+id/listar_utilizador"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="Listar Utilizadores" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/registar_evento"
+            android:icon="@drawable/ic_date_range_black_24dp"
+            android:title="Registar Evento" />
+        <item
+            android:id="@+id/eliminar_evento"
+            android:icon="@drawable/ic_delete_forever_black_24dp"
+            android:title="Eliminar Evento" />
+        <item
+            android:id="@+id/gerar_relatorio"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Gerar Relatório" />
+    </group>
+
+</menu>
