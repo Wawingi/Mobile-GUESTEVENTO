@@ -23,6 +23,8 @@ public class CRUD_UTILIZADOR extends SQLiteOpenHelper {
     private static final String email="email";
     private static final String telefone="telefone";
     private static final String perfil="perfil";
+    private static final String estado="estado";
+
 
     public CRUD_UTILIZADOR(Context context) {
         super(context, TABELAUTILIZADOR, null, 1);
@@ -30,7 +32,7 @@ public class CRUD_UTILIZADOR extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase bd) {
-        bd.execSQL("CREATE TABLE " + TABELAUTILIZADOR + "(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT unique, telefone INTEGER unique, perfil TEXT )");
+        bd.execSQL("CREATE TABLE " + TABELAUTILIZADOR + "(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT unique, telefone INTEGER unique, perfil TEXT, estado INTEGER)");
     }
 
     @Override
@@ -45,6 +47,7 @@ public class CRUD_UTILIZADOR extends SQLiteOpenHelper {
         cv.put(email,U.getEmail());
         cv.put(telefone, U.getTelefone());
         cv.put(perfil,U.getPerfil());
+        cv.put(estado,U.getEstado());
         long res = bd.insert(TABELAUTILIZADOR,null,cv);
         if(res==0) {
             return false;
@@ -65,34 +68,11 @@ public class CRUD_UTILIZADOR extends SQLiteOpenHelper {
             u.setEmail(c.getString(2));
             u.setTelefone(c.getInt(3));
             u.setPerfil(c.getString(4));
+            u.setEstado(c.getString(5));
             lista.add(u);
         }while (c.moveToNext());
             c.close();
         return lista;
     }
-
-    /*public List<PerdidoClass> pegaDados(){
-        PerdidoClass p=null;
-        SQLiteDatabase bd = this.getWritableDatabase();
-        List<PerdidoClass> lista = new ArrayList<>();
-        Cursor c = bd.rawQuery("SELECT * FROM " + TABELAPERDIDO ,null);
-        c.moveToFirst();
-        do{
-            p = new PerdidoClass();
-            p.setNome(c.getString(1));
-            p.setDescricao(c.getString(2));
-            lista.add(p);
-        }while (c.moveToNext());
-        c.close();
-        return lista;
-    }
-
-    public void eliminar(String tit,String desc){
-        SQLiteDatabase bd=this.getWritableDatabase();
-        String v[] = new String[2];
-        v[0]=tit;
-        v[1]=desc;
-        bd.delete(TABELAPERDIDO,titulo+"=? AND "+descricao+"=?",v);
-    }*/
 
 }

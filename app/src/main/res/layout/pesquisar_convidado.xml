@@ -26,87 +26,59 @@
             android:textSize="15dp"
             android:textStyle="bold"
             android:layout_height="match_parent"
-            android:text="REGISTAR EVENTO"/>
+            android:text="PSESQUISAR CONVIDADO"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="50px"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/IdEvento"
-                android:layout_width="wrap_content"
+                android:id="@+id/editConvidado"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="     Id evento    "
+                android:hint="Informe o nome do convidado"
                 android:gravity="center"
                 android:shadowColor="@color/colorAccent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:paddingLeft="10dp"
                 android:background="@drawable/efeitocurvo"
-                android:inputType="number"/>
+                android:inputType="text"/>
             <Button
-                android:id="@+id/btnRegistarEventoWeb"
+                android:id="@+id/btnPesquisa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/White"
                 android:textSize="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="15px"
                 android:layout_marginRight="15px"
-                android:drawablePadding="0dp"
-                android:drawableLeft="@drawable/ic_cloud_download_24dp"
+                android:drawablePadding="-40dp"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
                 android:paddingLeft="20dp"
                 android:background="@drawable/botao_redonda"
-                android:text="IMPORTAR WEB"/>
-        </LinearLayout>
+                android:text="PESQUISAR"/>
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="100px"
             android:background="@color/colorLinha"/>
-        <Button
-            android:id="@+id/btnRegistarEventoFicheiro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/White"
-            android:textSize="15dp"
-            android:layout_marginLeft="15px"
-            android:layout_marginRight="15px"
-            android:layout_marginTop="30px"
-            android:drawablePadding="-60dp"
-            android:drawableLeft="@drawable/ic_attach_file_24dp"
-            android:paddingLeft="40dp"
-            android:background="@drawable/botao_redonda"
-            android:text="IMPORTAR FICHEIRO"/>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginTop="30px"
-            android:background="@color/colorLinha"/>
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:background="@drawable/qrcode"/>
         <TextView
             android:layout_width="match_parent"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:gravity="center"
+            android:layout_marginTop="50px"
             android:textSize="15dp"
             android:layout_height="match_parent"
-            android:text="Leia o codigo QR do evento."/>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginTop="10px"
-            android:background="@color/colorLinha"/>
+            android:text="Ou leia o codigo QR do evento."/>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@drawable/qrcode"/>
 
     </LinearLayout>
 </LinearLayout>

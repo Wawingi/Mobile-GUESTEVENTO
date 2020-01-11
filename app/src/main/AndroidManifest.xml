@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wawingisebastiao.gestevento">
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,9 +25,12 @@
         </activity>
         <activity android:name=".RegistarUtilizador"></activity>
         <activity android:name=".ListarUtilizador"></activity>
-        <activity android:name=".Notificacao"></activity>
         <activity android:name=".RegistarEvento"></activity>
         <activity android:name=".Login"></activity>
+        <activity android:name=".ListarConvidados"></activity>
+        <activity android:name=".ApagarEvento"></activity>
+        <activity android:name=".ListarAssento"></activity>
+        <activity android:name=".PesquisarConvidado"></activity>
     </application>
 
 </manifest>

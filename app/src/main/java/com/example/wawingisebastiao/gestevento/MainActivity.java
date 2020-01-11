@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    LinearLayout btnListarConvidados,btnListarAssento,btnPesquisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,34 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Manipulação dos botões da tela principal
+        btnListarConvidados = (LinearLayout)findViewById(R.id.btnListarConvidados);
+        btnListarAssento = (LinearLayout)findViewById(R.id.btnListarAssento);
+        btnPesquisa = (LinearLayout)findViewById(R.id.btnPesquisa);
+
+        btnListarConvidados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),ListarConvidados.class);
+                startActivity(intent);
+            }
+        });
+
+        btnListarAssento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),ListarAssento.class);
+                startActivity(intent);
+            }
+        });
+
+        btnPesquisa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),PesquisarConvidado.class);
+                startActivity(intent);
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,7 +114,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this,RegistarEvento.class);
             startActivity(intent);
         } else if (id == R.id.eliminar_evento) {
-
+            Intent intent = new Intent(this,ApagarEvento.class);
+            startActivity(intent);
         } else if (id == R.id.gerar_relatorio) {
             Intent intent = new Intent(this,Login.class);
             startActivity(intent);

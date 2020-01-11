@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,7 @@ import java.util.regex.Pattern;
 
 public class RegistarUtilizador extends AppCompatActivity {
     Button registarUtilizador;
-    TextInputEditText txtnome,txtemail,txttelefone;
+    EditText txtnome,txtemail,txttelefone;
     RadioGroup radioGroup;
 
 
@@ -43,10 +44,10 @@ public class RegistarUtilizador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registar_utilizador);
         registarUtilizador = (Button)findViewById(R.id.btnRegistarUtilizador);
-        txtnome = (TextInputEditText)findViewById(R.id.nome);
-        txtemail = (TextInputEditText)findViewById(R.id.email);
+        txtnome = (EditText)findViewById(R.id.nome);
+        txtemail = (EditText)findViewById(R.id.email);
         radioGroup = findViewById(R.id.radioGrupo);
-        txttelefone = (TextInputEditText)findViewById(R.id.telefone);
+        txttelefone = (EditText)findViewById(R.id.telefone);
 
         //APP BAR PERSONALIZADO
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -117,12 +118,19 @@ public class RegistarUtilizador extends AppCompatActivity {
             u.setEmail(this.email);
             u.setTelefone(telefone);
             u.setPerfil(perfil);
+            u.setEstado("Activo");
 
             Boolean retorno = bd.inserir(u);
 
             if (retorno == true) {
-                Intent intent = new Intent(this,Notificacao.class);
+                Notificacao.Alerta(RegistarUtilizador.this,"Utilizador criado com sucesso.","#33c268");
+                txtnome.setText("");
+                txtemail.setText("");
+                txttelefone.setText("");
+                radioGroup.setOnCheckedChangeListener(null);
+                Intent intent = new Intent(this,ListarUtilizador.class);
                 startActivity(intent);
+                finish();
             } else {
                 Toast.makeText(RegistarUtilizador.this, "Erro ao importar", Toast.LENGTH_SHORT).show();
             }

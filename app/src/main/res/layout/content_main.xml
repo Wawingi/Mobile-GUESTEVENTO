@@ -60,7 +60,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnDocumentos"
+                    android:id="@+id/btnListarConvidados"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"
@@ -99,7 +99,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
-                    android:id="@+id/btnCalendarizacao"
+                    android:id="@+id/btnPesquisa"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"
@@ -128,7 +128,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnPerdido"
+                    android:id="@+id/btnListarAssento"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"

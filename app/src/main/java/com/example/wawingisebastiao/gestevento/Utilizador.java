@@ -9,12 +9,22 @@ public class Utilizador {
     private String email;
     int telefone;
     String perfil;
+    String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public Utilizador() {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.perfil = perfil;
+        this.estado = estado;
     }
 
     public String getNome() {
