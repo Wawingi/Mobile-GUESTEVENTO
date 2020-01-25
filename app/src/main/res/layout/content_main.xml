@@ -31,7 +31,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
-                    android:id="@+id/btnCursos"
+                    android:id="@+id/btnMarcarPresenca"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"
@@ -167,7 +167,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
-                    android:id="@+id/btnContacto"
+                    android:id="@+id/btnContabilidade"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"

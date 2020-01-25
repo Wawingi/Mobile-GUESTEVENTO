@@ -38,7 +38,6 @@ public class ApagarEvento extends AppCompatActivity {
         //Alerta de notificação
         LayoutInflater layoutInflater = getLayoutInflater();
         viewLayout = layoutInflater.inflate(R.layout.alerta,(ViewGroup) findViewById(R.id.custom_alerta));
-        alerta = (TextView)findViewById(R.id.alerta);
 
         btnApagarEvento.setOnClickListener(new View.OnClickListener() {
             @Override

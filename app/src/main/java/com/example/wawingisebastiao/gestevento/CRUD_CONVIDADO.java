@@ -56,6 +56,15 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
         }
     }
 
+    //Actualizar estado do convidado
+    public Boolean ActualizarEstado(int idConvidado){
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(estado,"Presente");
+        res = bd.update(TABELACONVIDADO,cv,"id="+idConvidado,null);
+        return res==0 ? false : true;
+    }
+
     public Boolean eliminar(int id){
         SQLiteDatabase bd=this.getWritableDatabase();
         res = bd.delete(TABELACONVIDADO,id_evento + "=" + id,null);
@@ -84,6 +93,7 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
         return lista;
     }
 
+    //Pega convidado em funcao do nome
     public ConvidadoClass pegaConvidado(String nomeconvidado){
         ConvidadoClass conv=null;
         SQLiteDatabase bd = this.getWritableDatabase();
@@ -101,6 +111,26 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
         return conv;
     }
 
+    //Pega convidado em funcao do ID
+    public ConvidadoClass pegaConvidadoById(int idConvidado){
+        ConvidadoClass conv=null;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        Cursor c = bd.rawQuery("SELECT * FROM " + TABELACONVIDADO + " WHERE " + id + " = '" + idConvidado + "'",null);
+        c.moveToFirst();
+        do{
+            conv = new ConvidadoClass();
+            conv.setId(c.getInt(0));
+            conv.setNome(c.getString(1));
+            conv.setAcompanhante(c.getString(2));
+            conv.setAssento(c.getString(3));
+            conv.setEstado(c.getString(4));
+        }while (c.moveToNext());
+        c.close();
+        return conv;
+    }
+
+
+    //Listar assentos de um determinado evento
     public List<ConvidadoClass> pegaAssentos(){
         ConvidadoClass ass=null;
         SQLiteDatabase bd = this.getWritableDatabase();
@@ -118,4 +148,26 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
         c.close();
         return lista;
     }
+
+    //Listar convidados de um determinado assento
+    public List<ConvidadoClass> listarConvidadosAssento(String assentoConvidado){
+        ConvidadoClass ass=null;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        List<ConvidadoClass> lista = new ArrayList<>();
+        Cursor c = bd.rawQuery("SELECT * FROM " + TABELACONVIDADO + " WHERE " + assento + " = '" + assentoConvidado + "'" ,null);
+        c.moveToFirst();
+        do{
+            ass = new ConvidadoClass();
+            ass.setNome(c.getString(1));
+            ass.setAcompanhante(c.getString(2));
+            ass.setAssento(c.getString(3));
+            ass.setEstado(c.getString(4));
+            lista.add(ass);
+        }while (c.moveToNext());
+        c.close();
+        return lista;
+    }
+
+
+
 }

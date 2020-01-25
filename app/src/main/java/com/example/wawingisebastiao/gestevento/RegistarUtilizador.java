@@ -78,11 +78,6 @@ public class RegistarUtilizador extends AppCompatActivity {
             }
         });
 
-        //registarUtilizador.setEnabled(false);
-        //registarUtilizador.setBackgroundColor(Color.parseColor("red"));
-
-        //registarUtilizador.setFocusable(true);0x7f070070
-
         //Backbuton
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -116,9 +111,11 @@ public class RegistarUtilizador extends AppCompatActivity {
             Utilizador u = new Utilizador();
             u.setNome(this.nome);
             u.setEmail(this.email);
+            u.setSenha("123456");
             u.setTelefone(telefone);
             u.setPerfil(perfil);
             u.setEstado("Activo");
+            u.setQtdVezes(0);
 
             Boolean retorno = bd.inserir(u);
 

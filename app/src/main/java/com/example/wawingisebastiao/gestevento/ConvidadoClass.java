@@ -1,5 +1,7 @@
 package com.example.wawingisebastiao.gestevento;
 
+import java.util.List;
+
 /**
  * Created by Wawingi Sebastiao on 29/12/2019.
  */
@@ -67,5 +69,27 @@ public class ConvidadoClass {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    //Contar acompanhantes de um convidado
+    public static int totalAcompanhantes(List<ConvidadoClass> listaConvidados){
+        int totAcomp = 0;
+
+        for(ConvidadoClass conv : listaConvidados){
+            if(!conv.getAcompanhante().equals("Sem Acompanhante")){
+                if(conv.getAcompanhante().contains("|")){
+                    char ac[] = conv.getAcompanhante().toCharArray();
+                    for(int i=0; i< ac.length;i++){
+                        if(ac[i]=='|') {
+                            totAcomp++;
+                        }
+                    }
+                    totAcomp++;
+                }else{
+                    totAcomp++;
+                }
+            }
+        }
+        return totAcomp;
     }
 }

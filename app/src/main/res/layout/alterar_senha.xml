@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/White"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_bar_pages"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_marginTop="0px"
+        android:background="@color/colorLinha"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="0px"
+        android:background="@color/colorPrimaryDark">
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="@color/White"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:text="ALTERAR SENHA"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="100px"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="30dp"
+            android:text="* Para a sua segurança, recomendamos que altere a sua senha."/>
+        <EditText
+            android:id="@+id/editSenha1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Informe a senha"
+            android:gravity="center"
+            android:shadowColor="@color/colorAccent"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/efeitocurvo"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/editSenha2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Repita a senha"
+            android:gravity="center"
+            android:shadowColor="@color/colorAccent"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/efeitocurvo"
+            android:inputType="textPassword"/>
+        <Button
+            android:id="@+id/btnAlterar"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/White"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:drawablePadding="-60dp"
+            android:drawableLeft="@drawable/ic_create_black_24dp"
+            android:paddingLeft="40dp"
+            android:background="@drawable/botao_redonda"
+            android:text="ALTERAR"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,6 +1,11 @@
 package com.example.wawingisebastiao.gestevento;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +18,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout btnListarConvidados,btnListarAssento,btnPesquisa;
+    LinearLayout btnMarcarPresenca,btnListarConvidados,btnListarAssento,btnPesquisa,btnContabilidade;
+    TextView txtnomeUtilizador,txtemailUtilizador,txtperfilUtilizador;
+    String FileName = "sessao";
+    int id;
+    String nome,email,perfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +37,21 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         //Manipulação dos botões da tela principal
+        btnMarcarPresenca = (LinearLayout)findViewById(R.id.btnMarcarPresenca);
         btnListarConvidados = (LinearLayout)findViewById(R.id.btnListarConvidados);
         btnListarAssento = (LinearLayout)findViewById(R.id.btnListarAssento);
         btnPesquisa = (LinearLayout)findViewById(R.id.btnPesquisa);
+        btnContabilidade = (LinearLayout)findViewById(R.id.btnContabilidade);
+
+        btnMarcarPresenca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),MarcarPresenca.class);
+                startActivity(intent);
+            }
+        });
 
         btnListarConvidados.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +77,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        btnContabilidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),Contabilidade.class);
+                startActivity(intent);
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,6 +94,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Pegar dados da sessão e associar a menu lateral
+
+        View headview = navigationView.getHeaderView(0);
+        txtnomeUtilizador = headview.findViewById(R.id.txtnomeUtilizador);
+        txtemailUtilizador = headview.findViewById(R.id.txtemailUtilizador);
+        txtperfilUtilizador = headview.findViewById(R.id.txtperfilUtilizador);
+        lerSessao();
     }
 
     @Override
@@ -103,26 +141,40 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.registar_utilizador) {
-            Intent intent = new Intent(this,RegistarUtilizador.class);
-            startActivity(intent);
-        } else if (id == R.id.listar_utilizador) {
-            Intent intent = new Intent(this,ListarUtilizador.class);
-            startActivity(intent);
-        } else if (id == R.id.registar_evento) {
-            Intent intent = new Intent(this,RegistarEvento.class);
-            startActivity(intent);
-        } else if (id == R.id.eliminar_evento) {
-            Intent intent = new Intent(this,ApagarEvento.class);
-            startActivity(intent);
-        } else if (id == R.id.gerar_relatorio) {
-            Intent intent = new Intent(this,Login.class);
-            startActivity(intent);
+        if(perfil.equals("Administrador")) {
+            if (id == R.id.registar_utilizador) {
+                Intent intent = new Intent(this, RegistarUtilizador.class);
+                startActivity(intent);
+            } else if (id == R.id.listar_utilizador) {
+                Intent intent = new Intent(this, ListarUtilizador.class);
+                startActivity(intent);
+            } else if (id == R.id.registar_evento) {
+                Intent intent = new Intent(this, RegistarEvento.class);
+                startActivity(intent);
+            } else if (id == R.id.eliminar_evento) {
+                Intent intent = new Intent(this, ApagarEvento.class);
+                startActivity(intent);
+            } else if (id == R.id.gerar_relatorio) {
+                //Intent intent = new Intent(this,Login.class);
+                //startActivity(intent);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void lerSessao(){
+        SharedPreferences sharedPreferences = getSharedPreferences(FileName, Context.MODE_PRIVATE);
+        String defaultValue = "Default";
+        id = sharedPreferences.getInt("id",0);
+        nome = sharedPreferences.getString("nome",defaultValue);
+        email = sharedPreferences.getString("email",defaultValue);
+        perfil = sharedPreferences.getString("perfil",defaultValue);
+
+        txtnomeUtilizador.setText(nome);
+        txtemailUtilizador.setText(email);
+        txtperfilUtilizador.setText(perfil);
     }
 }

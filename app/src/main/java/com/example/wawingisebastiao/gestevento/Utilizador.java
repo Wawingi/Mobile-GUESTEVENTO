@@ -5,26 +5,32 @@ package com.example.wawingisebastiao.gestevento;
  */
 
 public class Utilizador {
-    private String nome;
-    private String email;
+    int id;
+    String nome;
+    String email;
+    String senha;
     int telefone;
     String perfil;
     String estado;
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+    int qtdVezes;
 
     public Utilizador() {
+        this.id = id;
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
         this.telefone = telefone;
         this.perfil = perfil;
         this.estado = estado;
+        this.qtdVezes = qtdVezes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -43,6 +49,14 @@ public class Utilizador {
         this.email = email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public int getTelefone() {
         return telefone;
     }
@@ -57,5 +71,21 @@ public class Utilizador {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getQtdVezes() {
+        return qtdVezes;
+    }
+
+    public void setQtdVezes(int qtdVezes) {
+        this.qtdVezes = qtdVezes;
     }
 }

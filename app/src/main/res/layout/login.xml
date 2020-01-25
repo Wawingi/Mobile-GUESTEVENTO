@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/White"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <LinearLayout
@@ -32,10 +33,10 @@
             android:layout_marginBottom="25dp">
 
             <EditText
-                android:id="@+id/editnumrecibo"
+                android:id="@+id/editUsername"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Número do recibo"
+                android:hint="Username"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -43,11 +44,11 @@
                 android:paddingLeft="10dp"
                 android:background="@drawable/efeitocurvo"
                 android:layout_marginTop="60dp"
-                android:inputType="number"/>
+                android:inputType="text"/>
 
 
             <EditText
-                android:id="@+id/editnumbi"
+                android:id="@+id/editSenha"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Senha"
@@ -62,7 +63,7 @@
                 android:inputType="textPassword"/>
 
             <Button
-                android:id="@+id/btnRegistarUtilizador"
+                android:id="@+id/btnLogar"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
