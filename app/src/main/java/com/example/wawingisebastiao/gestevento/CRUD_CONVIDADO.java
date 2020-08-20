@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +25,7 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
     private static final String acompanhante="acompanhante";
     private static final String assento="assento";
     private static final String estado="estado";
+    private static final String hora_chegada="hora_chegada";
     private static final String id_evento="id_evento";
 
     public CRUD_CONVIDADO(Context context) {
@@ -31,7 +34,7 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase bd) {
-        bd.execSQL("CREATE TABLE " + TABELACONVIDADO + "(id INTEGER PRIMARY KEY, nome TEXT, acompanhante TEXT, assento TEXT, estado TEXT, id_evento INTEGER)");
+        bd.execSQL("CREATE TABLE " + TABELACONVIDADO + "(id INTEGER PRIMARY KEY, nome TEXT, acompanhante TEXT, assento TEXT, estado TEXT, hora_chegada TEXT, id_evento INTEGER)");
     }
 
     @Override
@@ -47,6 +50,7 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
         cv.put(acompanhante,conv.getAcompanhante());
         cv.put(assento,conv.getAssento());
         cv.put(estado,conv.getEstado());
+        cv.put(hora_chegada,conv.getChegada());
         cv.put(id_evento,conv.getId_evento());
         res = bd.insert(TABELACONVIDADO,null,cv);
         if(res==0) {
@@ -58,9 +62,14 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
 
     //Actualizar estado do convidado
     public Boolean ActualizarEstado(int idConvidado){
+        //GET SYSDATE
+        Date date = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         SQLiteDatabase bd = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(estado,"Presente");
+        cv.put(hora_chegada,formato.format(date));
         res = bd.update(TABELACONVIDADO,cv,"id="+idConvidado,null);
         return res==0 ? false : true;
     }
@@ -87,6 +96,7 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
             conv.setAcompanhante(c.getString(2));
             conv.setAssento(c.getString(3));
             conv.setEstado(c.getString(4));
+            conv.setChegada(c.getString(5));
             lista.add(conv);
         }while (c.moveToNext());
         c.close();
@@ -133,9 +143,10 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
     //Listar assentos de um determinado evento
     public List<ConvidadoClass> pegaAssentos(){
         ConvidadoClass ass=null;
+        String tipoassento = "Sem Assento";
         SQLiteDatabase bd = this.getWritableDatabase();
         List<ConvidadoClass> lista = new ArrayList<>();
-        Cursor c = bd.rawQuery("SELECT DISTINCT("+ assento +")FROM " + TABELACONVIDADO ,null);
+        Cursor c = bd.rawQuery("SELECT DISTINCT("+ assento +")FROM " + TABELACONVIDADO + " WHERE " + assento + " <> '" + tipoassento + "'" ,null);
         c.moveToFirst();
         do{
             ass = new ConvidadoClass();
@@ -162,10 +173,36 @@ public class CRUD_CONVIDADO extends SQLiteOpenHelper {
             ass.setAcompanhante(c.getString(2));
             ass.setAssento(c.getString(3));
             ass.setEstado(c.getString(4));
+            ass.setChegada(c.getString(5));
             lista.add(ass);
         }while (c.moveToNext());
         c.close();
         return lista;
+    }
+
+    //Contar convidados de um evento
+    public List<ConvidadoClass> contConvidados(String est){
+        ConvidadoClass conv=null;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        List<ConvidadoClass> lista = new ArrayList<>();
+        Cursor c = bd.rawQuery("SELECT * FROM " + TABELACONVIDADO + " WHERE " + estado + " = '" + est + "'" ,null);
+        if(c.getCount()>0) {
+            c.moveToFirst();
+            do {
+                conv = new ConvidadoClass();
+                conv.setId(c.getInt(0));
+                conv.setNome(c.getString(1));
+                conv.setAcompanhante(c.getString(2));
+                conv.setAssento(c.getString(3));
+                conv.setEstado(c.getString(4));
+                conv.setChegada(c.getString(5));
+                lista.add(conv);
+            } while (c.moveToNext());
+            c.close();
+            return lista;
+        }else{
+            return null;
+        }
     }
 
 

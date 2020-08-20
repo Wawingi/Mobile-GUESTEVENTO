@@ -90,6 +90,7 @@
             android:background="@color/colorLinha"/>
 
         <ImageView
+            android:id="@+id/btnQRRegistar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"

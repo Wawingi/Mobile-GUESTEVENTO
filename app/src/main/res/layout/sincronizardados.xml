@@ -26,12 +26,12 @@
             android:textSize="15dp"
             android:textStyle="bold"
             android:layout_height="match_parent"
-            android:text="CONTABILIDADE EVENTO"/>
+            android:text="SINCRONIZAÇÃO DE DADOS"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/colorAccentBebe"
@@ -45,11 +45,11 @@
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="TOTAL DE CONVIDADOS: "
+                android:text="CONVIDADOS PRESENTES: "
                 android:textColor="@color/black"
                 android:textSize="13dp"/>
             <TextView
-                android:id="@+id/txttotalconvidados"
+                android:id="@+id/txtconvidadospresentes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="0"
@@ -69,16 +69,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
+            android:layout_marginBottom="0dp"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="TOTAL DE ACOMPANHANTES: "
+                android:text="CONVIDADOS AUSENTES: "
                 android:textColor="@color/black"
                 android:textSize="13dp" />
             <TextView
-                android:id="@+id/txttotalacompanhantes"
+                android:id="@+id/txtconvidadosausentes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="0"
@@ -95,57 +96,20 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/White"/>
-        <LinearLayout
+        <Button
+            android:id="@+id/btnSincronizarConvidados"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="TOTAL DE PESSOAS: "
-                android:textColor="@color/black"
-                android:textSize="13dp"/>
-            <TextView
-                android:id="@+id/txttotalpessoas"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:gravity="right"
-                android:layout_marginRight="15dp"
-                android:textColor="@color/black"
-                android:textSize="15dp"/>
-        </LinearLayout>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/White"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            android:drawablePadding="-80dp"
             android:layout_marginBottom="20dp"
-            android:background="@color/White"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="TOTAL DE ASSENTOS: "
-                android:textColor="@color/black"
-                android:textSize="13dp"/>
-            <TextView
-                android:id="@+id/txttotalassentos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:gravity="right"
-                android:layout_marginRight="15dp"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-        </LinearLayout>
-
+            android:drawableRight="@drawable/ic_baseline_sync_24"
+            android:paddingRight="50dp"
+            android:background="@drawable/botao_redonda"
+            android:text="SINCRONIZAR"/>
     </LinearLayout>
 </LinearLayout>

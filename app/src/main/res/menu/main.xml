@@ -10,5 +10,6 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="Sair"
+        android:icon="@drawable/ic_keyboard_return_black_24dp"
         app:showAsAction="never" />
 </menu>

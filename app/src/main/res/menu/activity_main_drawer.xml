@@ -27,6 +27,10 @@
             android:id="@+id/gerar_relatorio"
             android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Gerar Relatório" />
+        <item
+            android:id="@+id/sincronizar_dados"
+            android:icon="@drawable/ic_baseline_sync_24"
+            android:title="Sincronizar Dados" />
     </group>
 
 </menu>

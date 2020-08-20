@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="fill"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.wawingisebastiao.gestevento.MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -197,7 +197,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btnConheca"
+                    android:id="@+id/btnEstatistica"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_marginLeft="15dp"

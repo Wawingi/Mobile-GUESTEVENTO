@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,16 +52,23 @@ public class AdaptadorConvidado extends BaseAdapter {
         TextView txtacompanhante = (TextView)vista.findViewById(R.id.txtacompanhante);
         TextView txtassento = (TextView)vista.findViewById(R.id.txtassento);
         TextView txtestado = (TextView)vista.findViewById(R.id.txtestado);
+        TextView txtchegada = (TextView)vista.findViewById(R.id.txtchegada);
         LinearLayout linearestado = (LinearLayout)vista.findViewById(R.id.linearestado);
 
         txtnome.setText(listaconvidados.get(posicao).getNome().toString());
-        txtacompanhante.setText(listaconvidados.get(posicao).getAcompanhante().toString());
+        if(listaconvidados.get(posicao).getAcompanhante().equals("null")) {
+            txtacompanhante.setText("Sem Acompanhante");
+        }else{
+            txtacompanhante.setText(listaconvidados.get(posicao).getAcompanhante().toString());
+        }
         txtassento.setText(listaconvidados.get(posicao).getAssento().toString());
         txtestado.setText(String.valueOf(listaconvidados.get(posicao).getEstado()));
         if(listaconvidados.get(posicao).getEstado().toString().equals("Presente")) {
-            linearestado.setBackgroundColor(Color.parseColor("#33c268"));
+            linearestado.setBackgroundColor(Color.parseColor("#82f2ab"));
         }
-
+        //Pega somente hora
+        String [] texto = listaconvidados.get(posicao).getChegada().toString().split(" ");
+        txtchegada.setText(texto[1]);
         return vista;
     }
 }

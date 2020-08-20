@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout btnMarcarPresenca,btnListarConvidados,btnListarAssento,btnPesquisa,btnContabilidade;
+    LinearLayout btnMarcarPresenca,btnListarConvidados,btnListarAssento,btnPesquisa,btnContabilidade,btnEstatistica;
     TextView txtnomeUtilizador,txtemailUtilizador,txtperfilUtilizador;
     String FileName = "sessao";
     int id;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         btnListarAssento = (LinearLayout)findViewById(R.id.btnListarAssento);
         btnPesquisa = (LinearLayout)findViewById(R.id.btnPesquisa);
         btnContabilidade = (LinearLayout)findViewById(R.id.btnContabilidade);
+        btnEstatistica = (LinearLayout)findViewById(R.id.btnEstatistica);
 
         btnMarcarPresenca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplication(),Contabilidade.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEstatistica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(),Estatistica.class);
                 startActivity(intent);
             }
         });
@@ -157,6 +166,9 @@ public class MainActivity extends AppCompatActivity
             } else if (id == R.id.gerar_relatorio) {
                 //Intent intent = new Intent(this,Login.class);
                 //startActivity(intent);
+            } else if(id == R.id.sincronizar_dados){
+                Intent intent = new Intent(this, SincronizarDados.class);
+                startActivity(intent);
             }
         }
 
@@ -169,9 +181,9 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences sharedPreferences = getSharedPreferences(FileName, Context.MODE_PRIVATE);
         String defaultValue = "Default";
         id = sharedPreferences.getInt("id",0);
-        nome = sharedPreferences.getString("nome",defaultValue);
-        email = sharedPreferences.getString("email",defaultValue);
-        perfil = sharedPreferences.getString("perfil",defaultValue);
+        nome = sharedPreferences.getString("nome","ADMIN");
+        email = sharedPreferences.getString("email","gdw@gdw.co.ao");
+        perfil = sharedPreferences.getString("perfil","Administrador");
 
         txtnomeUtilizador.setText(nome);
         txtemailUtilizador.setText(email);

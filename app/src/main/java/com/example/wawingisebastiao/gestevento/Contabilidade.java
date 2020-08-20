@@ -30,14 +30,12 @@ public class Contabilidade extends AppCompatActivity {
         listaConvidados = new ArrayList<>();
         bd = new CRUD_CONVIDADO(this);
 
-
-
         try{
             listaConvidados = bd.pegaConvidados();
             txttotalconvidados.setText(String.valueOf(listaConvidados.size()));
             txttotalacompanhantes.setText(String.valueOf(ConvidadoClass.totalAcompanhantes(listaConvidados)));
-            txttotalassentos.setText(String.valueOf(bd.pegaAssentos().size()));
             txttotalpessoas.setText(String.valueOf(listaConvidados.size()+ConvidadoClass.totalAcompanhantes(listaConvidados)));
+            txttotalassentos.setText(String.valueOf(bd.pegaAssentos().size()));
         }catch(Exception e){
             System.out.println("BUG: "+e);
         }

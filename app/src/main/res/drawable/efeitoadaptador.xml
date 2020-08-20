@@ -5,5 +5,5 @@
         android:radius="0dp"/>
     <solid
         android:color="@color/colorAccentBebe"/>
-    <stroke android:width="1dip" android:color="@color/colorPrimary"/>
+    <stroke android:width="1dip" android:color="@color/colorAccentBebe"/>
 </shape>

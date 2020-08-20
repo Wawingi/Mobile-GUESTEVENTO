@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/linearestado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,6 +41,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="93dp"
                         android:textSize="16sp"
+                        android:textStyle="bold"
                         android:text="nome aparece aqui"
                         android:textColor="@color/black"
                         android:gravity="left"/>
@@ -97,26 +99,42 @@
                         android:text="ESTADO:"
                         android:textColor="@color/cinza"
                         android:gravity="center"/>
-                    <LinearLayout
-                        android:id="@+id/linearestado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:background="@color/corAlerta"
-                        android:layout_marginLeft="80dp">
+
                         <TextView
                             android:id="@+id/txtestado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
-                            android:layout_marginLeft="5dp"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="82dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="2dp"
                             android:text="nome aparece aqui"
                             android:textColor="@color/black"
                             android:gravity="center"/>
-                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="HORA DE ENTRADA:"
+                        android:textColor="@color/cinza"
+                        android:gravity="center"/>
 
+                    <TextView
+                        android:id="@+id/txtchegada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="nome aparece aqui"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

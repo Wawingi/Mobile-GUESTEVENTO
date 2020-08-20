@@ -109,8 +109,16 @@ public class CRUD_UTILIZADOR extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(senha,novaSenha);
         cv.put(qtdVezes,1);
-        System.out.println("SENHA:"+novaSenha);
         long res = bd.update(TABELAUTILIZADOR,cv,"id="+idLido,null);
+        return res==0 ? false : true;
+    }
+
+    //Actualizar senha do utilizador
+    public Boolean AlterarEstado(String estadoLido,int idUtilizador){
+        SQLiteDatabase bd = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(estado,estadoLido);
+        long res = bd.update(TABELAUTILIZADOR,cv,"id="+idUtilizador,null);
         return res==0 ? false : true;
     }
 

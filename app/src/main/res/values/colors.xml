@@ -2,11 +2,12 @@
 <resources>
     <color name="colorPrimary">#404fa6</color>
     <color name="colorLinha">#8593de</color>
-    <color name="colorPrimaryDark">#404fa6</color>
-    <color name="colorAccent">#ff71a2</color>
+    <color name="colorPrimaryDark">#1ca2fb</color>
+    <color name="colorAccent">#f55b90</color>
+    <color name="colorTopLogo">#EAF641</color>
     <color name="colorAccentBebe">#ffc1d6</color>
     <color name="black">#000000</color>
-    <color name="corSucesso">#33c268</color>
+    <color name="corSucesso">#82f2ab</color>
     <color name="corAlerta">#ffdc4e</color>
     <color name="White">#ffffff</color>
     <color name="cinza">#717171</color>

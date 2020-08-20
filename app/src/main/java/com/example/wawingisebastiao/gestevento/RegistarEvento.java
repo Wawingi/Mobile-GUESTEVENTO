@@ -2,6 +2,7 @@ package com.example.wawingisebastiao.gestevento;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,13 +45,15 @@ import java.util.List;
  */
 
 public class RegistarEvento extends AppCompatActivity {
-    private static String URL = "http://192.168.43.208/gestevento/public/api/convidados/";
+    private static String URL = "http://192.168.1.100/gestevento/public/api/convidados/";
     Button registarEventoWeb,registarEventoFicheiro;
     EditText edit_id_evento;
     ListView lv;
     CRUD_CONVIDADO bd;
     Boolean retorno;
     View viewLayout;
+    private IntentIntegrator qrScan;
+    ImageView btnQRRegistar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +62,7 @@ public class RegistarEvento extends AppCompatActivity {
         registarEventoWeb = (Button)findViewById(R.id.btnRegistarEventoWeb);
         registarEventoFicheiro = (Button)findViewById(R.id.btnRegistarEventoFicheiro);
         edit_id_evento = (EditText)findViewById(R.id.IdEvento);
+        btnQRRegistar = (ImageView)findViewById(R.id.btnQRRegistar);
 
         //Alerta de notificação
         LayoutInflater layoutInflater = getLayoutInflater();
@@ -63,16 +70,24 @@ public class RegistarEvento extends AppCompatActivity {
 
         bd = new CRUD_CONVIDADO(this);
 
-
-
         //Verificação da conexão para webservice
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
 
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
+        //QR Code
+        qrScan = new IntentIntegrator(this);
+
         if(netInfo != null && netInfo.isConnectedOrConnecting()){
             try{
+                btnQRRegistar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        qrScan.initiateScan();
+                    }
+                });
+
                 registarEventoWeb.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -132,7 +147,7 @@ public class RegistarEvento extends AppCompatActivity {
                             JSONArray array = jsonObject.getJSONArray("data");
 
                             if(array.length()==0) {
-                                URL = "http://192.168.43.208/gestevento/public/api/convidados/";
+                                URL = "http://192.168.1.100/gestevento/public/api/convidados/";
                                 Notificacao.Alerta(RegistarEvento.this,"Nenhum evento encontrado, informe ID válido.","#FFFC3939");
                                 return;
                             }
@@ -144,16 +159,17 @@ public class RegistarEvento extends AppCompatActivity {
                                 if (o.getString("acompanhante").isEmpty())
                                     item.setAcompanhante("Sem Acompanhante");
                                 else {
-                                    item.setAcompanhante(FormataAcompanhante(o.getString("acompanhante").trim()));
+                                    item.setAcompanhante(o.getString("acompanhante").trim());
                                 }
                                 item.setAssento(o.getString("assento"));
                                 item.setEstado("Ausente");
+                                item.setChegada("0000-00-00 00:00:00");
                                 item.setId_evento(o.getInt("id_evento"));
                                 retorno = bd.inserir(item);
                             }
 
                             if (retorno == true) {
-                                URL = "http://192.168.43.208/gestevento/public/api/convidados/";
+                                URL = "http://192.168.1.100/gestevento/public/api/convidados/";
                                 edit_id_evento.setText("");
                                 Notificacao.Alerta(RegistarEvento.this,"Evento importado com sucesso.","#33c268");
                             } else
@@ -190,5 +206,30 @@ public class RegistarEvento extends AppCompatActivity {
             this.finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Função que chama o QR Code
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Notificacao.Alerta(RegistarEvento.this,"Operação cancelada.","#FFFC3939");
+            } else {
+                try {
+                    if(bd.pegaConvidados().size() > 0){
+                        Notificacao.Alerta(RegistarEvento.this,"Já possui um evento importado.","#ffdc4e");
+                        return;
+                    }else{
+                        URL = URL + "" + result.getContents().toString();
+                        pegaConvidados();
+                    }
+                } catch (Exception e) {
+                    URL = URL + "" + result.getContents().toString();
+                    pegaConvidados();
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

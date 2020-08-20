@@ -15,7 +15,6 @@
             android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:layout_marginLeft="8dp"
-
             android:layout_marginRight="8dp">
             <ImageView
                 android:layout_width="80dp"
@@ -70,10 +69,10 @@
                         android:gravity="center"/>
                     <LinearLayout
                         android:id="@+id/linearestado"
-                        android:background="@color/cinza"
+                        android:background="@color/corErro"
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="100dp"
-                        android:layout_marginRight="100dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
                         android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/txtestado"
@@ -81,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
                             android:textColor="@color/White"
-                            android:text="estado"/>
+                            android:text="desactivado"/>
                     </LinearLayout>
                 </LinearLayout>
         </LinearLayout>

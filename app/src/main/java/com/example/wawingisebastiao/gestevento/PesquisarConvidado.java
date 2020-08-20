@@ -120,7 +120,7 @@ public class PesquisarConvidado extends AppCompatActivity {
         txtestado.setText(convidado.getEstado().toString());
 
         if(convidado.getEstado().toString().equals("Presente")){
-            linearestado.setBackgroundColor(Color.parseColor("#33c268"));
+            linearestado.setBackgroundColor(Color.parseColor("#82f2ab"));
         }
 
         btnfechar = (ImageView)epicDialog.findViewById(R.id.btnfechar);
